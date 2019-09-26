@@ -69,7 +69,7 @@ export class FormItemPedidoPage implements OnInit {
     if(qtd <=0)
       qtd = 1;
 
-    this.atualizaTotal(qtd)
+    this.atualizaTotal(qtd);
   }
 
   atualizaTotal(quantidade: number) {
@@ -78,6 +78,12 @@ export class FormItemPedidoPage implements OnInit {
   }
 
   onSubmit() {
-
+    if (this.form.valid) {
+      this.carrinhoService.insert(this.form.value)
+      .then( () => {
+        this.toast.show('Produto adicionado com sucesso');
+        this.router.navigate(['/tabs/produtos']);
+      });
+    }
   }
 }
