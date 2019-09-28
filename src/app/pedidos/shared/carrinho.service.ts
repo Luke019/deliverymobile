@@ -23,8 +23,44 @@ export class CarrinhoService {
   carrinhoPossuiItens() {
     return this.getCarrinhoProdutosRef().snapshotChanges().pipe(
       map(changes => {
-        return changes.length > 0
+        return changes.length > 0;
       })
     );
+  }
+
+  calcularTotal(preco: number, quantidade: number) {
+    return preco * quantidade;
+  }
+
+  update(key: string, quantidade: number, total: number) {
+    return this.getCarrinhoProdutosRef().update(key, {quantidade: quantidade, total: total});
+  }
+
+  remove(key: string) {
+    return this.getCarrinhoProdutosRef().remove(key);
+  }
+
+  getAll() {
+    return this.getCarrinhoProdutosRef().snapshotChanges().pipe(
+      map(changes => {
+        return changes.map(m => ({key: m.payload.key, ...m.payload.val() }));
+      })
+    );
+  }
+
+  getTotalPedido() {
+    return this.getCarrinhoProdutosRef().snapshotChanges().pipe(
+      map(changes => {
+        return changes
+        .map((m: any) => (m.payload.val().total))
+        .reduce((prev: number, current: number) => {
+          return prev + current;
+        });
+      })
+    );
+  }
+
+  Clear() {
+
   }
 }
