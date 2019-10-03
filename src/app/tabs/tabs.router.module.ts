@@ -52,6 +52,10 @@ const routes: Routes = [
       {
         path: 'endereco/novo',
         loadChildren: '../enderecos/form-endereco/form-endereco.module#FormEnderecoPageModule'
+      },
+      {
+        path: 'enderecos/editar/:key',
+        loadChildren: '../enderecos/form-endereco/form-endereco.module#FormEnderecoPageModule'
       }
     ]
   },

@@ -20,6 +20,21 @@ key: string;
 
   ngOnInit() {
     this.criarFormulario();
+    // tslint:disable-next-line: prefer-const
+    let key = this.route.snapshot.paramMap.get('key');
+    if (key) {
+      const subscribe = this.enderecoService.getByKey(key).subscribe( (endereco: any) => {
+        subscribe.unsubscribe();
+        this.key = endereco.key;
+        this.formEndereco.patchValue({
+          cep: endereco.cep,
+          logradouro: endereco.logradouro,
+          numero: endereco.numero,
+          complemento: endereco.complemento,
+          bairro: endereco.bairro
+        });
+      });
+    }
   }
 
   criarFormulario() {

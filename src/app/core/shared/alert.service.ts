@@ -8,18 +8,19 @@ export class AlertService {
 
   constructor(private alertController: AlertController) { }
 
-  async ShowConfirmaExclusao(nome: string, actionRemove:() =>void){
+  async ShowConfirmaExclusao(nome: string, actionRemove: () => void) {
     const alert = await this.alertController.create({
+      // tslint:disable-next-line: quotemark
       header: "Remover o item?",
-      message: `Deseja remover o item: ${nome}?`,
-      buttons:[
+      message: `Deseja remover o item: ${nome} ?`,
+      buttons: [
         {
           text: 'Cancelar'
         },
         {
           text: 'Remover',
-          handler: () =>{
-            actionRemove()
+          handler: () => {
+            actionRemove();
           }
         }
       ]
