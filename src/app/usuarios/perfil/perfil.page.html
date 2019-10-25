@@ -5,6 +5,10 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-avatar>
+    <i class="fas fa-user-circle"></i>
+  </ion-avatar>
+
   <ion-list>
     <ion-item>
       <ion-label>{{ user.name}}</ion-label>
@@ -14,7 +18,7 @@
     </ion-item>
   </ion-list>
 
-  <ion-button expand="block"  fill="outline" color="warning" [routerLink]="['/usuarios/enderecos']">Meus Endereços</ion-button> 
+  <ion-button expand="block"  fill="outline" color="danger" [routerLink]="['/usuarios/enderecos']">Meus Endereços</ion-button> 
   <ion-button expand="block" color="dark" (click)="sair()">Sair</ion-button> 
 
 </ion-content>

@@ -4,7 +4,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from 'src/app/core/shared/toast.service';
-import { identifierModuleUrl } from '@angular/compiler';
 
 @Component({
   selector: 'app-form-item-pedido',
@@ -74,7 +73,7 @@ export class FormItemPedidoPage implements OnInit {
 
   atualizaTotal(quantidade: number) {
     this.total = this.produto.preco * quantidade;
-    this.form.patchValue({quantidade:quantidade, total: this.total});
+    this.form.patchValue({quantidade: quantidade, total: this.total});
   }
 
   onSubmit() {

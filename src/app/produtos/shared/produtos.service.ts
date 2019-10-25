@@ -13,6 +13,7 @@ export class ProdutosService {
   getAll(categoriaKey: string = null) {
     return this.db.list(FirebasePath.PRODUTOS, q => {
       if (categoriaKey) {
+        // listar por categoria
         return q.orderByChild('categoriaKey').equalTo(categoriaKey);
       } else {
         return q.orderByChild('nome');
@@ -21,20 +22,20 @@ export class ProdutosService {
       map(changes => {
         return changes.map(m => ({key: m.payload.key, ...m.payload.val() }));
       })
-    )
+    );
   }
 
-  getCategoriasAll(){
+  getCategoriasAll() {
     return this.db.list(FirebasePath.CATEGORIAS)
     .snapshotChanges().pipe(
       map(changes => {
         return changes.map(m => ({key: m.payload.key, ...m.payload.val() }));
       })
-    )
+    );
   }
-  
+
   // Buscar Produtos por uma Key
-  getByKey(key: string){
+  getByKey(key: string) {
                  // 'produtos/'+'-L5sWLlqdjxFeH6a19Q-'
                  //  path ='produtos/-L5sWLlqdjxFeH6a19Q-'
     const path = `${FirebasePath.PRODUTOS}${key}`;
@@ -42,8 +43,8 @@ export class ProdutosService {
       map(change => {
         return ({ key: change.key, ...change.payload.val() });
       })
-    )
+    );
   }
 
-  
+
 }
