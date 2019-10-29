@@ -8,9 +8,9 @@
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <form [formGroup]="form" (ngSubmit)= "onSubmit()">
     <ion-list>
-      <!-- Grupo forma de pagamento -->
+       Grupo forma de pagamento 
       <ion-item-group>
         <ion-item-divider color="light">
           <ion-label>
@@ -26,13 +26,13 @@
           </ion-select>
         </ion-item>
 
-        <!-- se for dinheiro -->
+         <!-- se for dinheiro  -->
         <ion-item *ngIf="form.value.formaPagamento == 1">
           <ion-label>Troco para</ion-label>
           <ion-input type="number" step="1" formControlName="trocoPara"></ion-input>
         </ion-item>
 
-        <!-- se for cartão -->
+         <!-- se for cartão  -->
         <ion-item *ngIf="form.value.formaPagamento == 2">
           <ion-label>Qual cartão</ion-label>
           <ion-select formControlName="tipoCartao">
@@ -45,7 +45,7 @@
         </ion-item>
       </ion-item-group>
 
-      <!-- Grupo endereço de entrega -->
+       <!-- Grupo endereço de entrega  -->
       <ion-item-group>
         <ion-item-divider color="light">
           <ion-label>
@@ -68,7 +68,7 @@
         </ion-item>
       </ion-item-group>
 
-      <!-- Grupo produtos do pedido -->
+       <!-- Grupo produtos do pedido  -->
       <ion-item-group>
         <ion-item-divider color="light">
           <ion-label>

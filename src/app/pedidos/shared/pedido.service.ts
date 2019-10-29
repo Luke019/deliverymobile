@@ -6,6 +6,7 @@ import { DatePipe } from '@angular/common';
 import { map } from 'rxjs/operators';
 import { FirebasePath } from 'src/app/core/shared/firebase-path';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -27,9 +28,40 @@ export class PedidoService {
               private carrinhoService: CarrinhoService,
               private dateFormat: DatePipe) { }
 
-  gerarPedido(pedido: any) {
+              gerarPedido(pedido: any) {
+                return new Promise( (resolve, reject) => {
+                  const subscribe = this.carrinhoService.getAll().subscribe(produtos => {
+                    subscribe.unsubscribe();
 
-  }
+                    const pedidoRef = this.criarObjetoPedido(pedido);
+                    const pedidoKey = this.db.createPushId();
+                    const pedidoPath = `${FirebasePath.PEDIDOS}${pedidoKey}`;
+
+                    let pedidoObj = {};
+                    pedidoObj[pedidoPath] = pedidoRef;
+
+                    produtos.forEach( (produto: any) => {
+                      const pedidoProdutoPath = `${FirebasePath.PEDIDOS_PRODUTOS}${pedidoKey}/${produto.produtoKey}`;
+                      pedidoObj[pedidoProdutoPath] = {
+                        produtoNome: produto.produtoNome,
+                        produtoDescricao: produto.Descricao,
+                        observacao: produto.observacao,
+                        produtoPreco: produto.produtoPreco,
+                        quantidade: produto.quantidade,
+                        total: produto.total
+                      };
+                    });
+
+                    this.db.object('/').update(pedidoObj)
+                      .then(() => {
+                        this.carrinhoService.clear()
+                          .then(() => resolve())
+                          .catch(() => reject ());
+                      })
+                      .catch( () => reject());
+                  });
+                });
+              }
 
   private criarObjetoPedido(pedido: any) {
     const numeroPedido = '#' + this.dateFormat.transform(new Date(), 'ddMMyyyyHHmmss');
@@ -47,7 +79,8 @@ export class PedidoService {
       // Tecnica para filtro de varios campos
       usuarioStatus: this.afAuth.auth.currentUser.uid + '_' + PedidoService.STATUS.ENVIADO,
       total: pedido.total
-    }
+    };
+    return pedidoRef;
   }
 
   getStatusNome(status: number) {
@@ -99,6 +132,6 @@ export class PedidoService {
       map(changes => {
         return changes.map((m => ({ key: m.payload.key, ...m.payload.val() })))
       })
-    )
+    );
   }
 }

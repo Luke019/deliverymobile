@@ -8,6 +8,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class CarrinhoService {
+  clear: any;
 
   constructor(private db: AngularFireDatabase,
               private afAuth: AngularFireAuth) { }
@@ -61,6 +62,6 @@ export class CarrinhoService {
   }
 
   Clear() {
-
+    return this.getCarrinhoProdutosRef().remove();
   }
 }

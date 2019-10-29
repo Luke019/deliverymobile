@@ -18,7 +18,7 @@ export class FormaPagamentoPage implements OnInit {
   form: FormGroup;
   produtos: Observable<any[]>;
   total: number = 0;
-  formaPagamento: Array<any> = [
+  formasPagamento: Array<any> = [
     {valor: PedidoService.TIPO_FORMA_PAGAMENTO.DINHEIRO, descricao: 'Dinheiro'},
     {valor: PedidoService.TIPO_FORMA_PAGAMENTO.CARTAO, descricao: 'Cartão de crédito/débito'}
   ];
