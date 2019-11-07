@@ -1,23 +1,28 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
-import { FormaPagamentoPage } from './forma-pagamento.page';
+import { IonicModule } from '@ionic/angular';
+
+import { ListaPedidoPage } from './lista-pedido.page';
 import { SharedModule } from 'src/app/core/shared/shared/shared.module';
 
 const routes: Routes = [
   {
     path: '',
-    component: FormaPagamentoPage
+    component: ListaPedidoPage
   }
 ];
 
 @NgModule({
   imports: [
+    CommonModule,
     FormsModule,
+    IonicModule,
     SharedModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [FormaPagamentoPage]
+  declarations: [ListaPedidoPage]
 })
-export class FormaPagamentoPageModule {}
+export class ListaPedidoPageModule {}

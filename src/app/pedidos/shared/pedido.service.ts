@@ -44,7 +44,7 @@ export class PedidoService {
                       const pedidoProdutoPath = `${FirebasePath.PEDIDOS_PRODUTOS}${pedidoKey}/${produto.produtoKey}`;
                       pedidoObj[pedidoProdutoPath] = {
                         produtoNome: produto.produtoNome,
-                        produtoDescricao: produto.Descricao,
+                        produtoDescricao: produto.produtoDescricao,
                         observacao: produto.observacao,
                         produtoPreco: produto.produtoPreco,
                         quantidade: produto.quantidade,
@@ -54,7 +54,7 @@ export class PedidoService {
 
                     this.db.object('/').update(pedidoObj)
                       .then(() => {
-                        this.carrinhoService.clear()
+                        this.carrinhoService.Clear()
                           .then(() => resolve())
                           .catch(() => reject ());
                       })

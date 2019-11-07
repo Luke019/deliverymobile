@@ -1,4 +1,4 @@
-import { ListaEnderecoPage } from './../../enderecos/lista-endereco/lista-endereco.page';
+import { ListaEnderecoPage } from 'src/app/enderecos/lista-endereco/lista-endereco.page';
 import { CarrinhoService } from './../shared/carrinho.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -54,7 +54,7 @@ export class FormaPagamentoPage implements OnInit {
     this.modalCtrl.create({
       component: ListaEnderecoPage,
       componentProps: {
-        selecionaEndereco: true
+        selecionarEndereco: true
       },
       showBackdrop: true,
       backdropDismiss: true
@@ -76,7 +76,7 @@ export class FormaPagamentoPage implements OnInit {
       this.pedidoService.gerarPedido(this.form.value)
         .then( () => {
           this.toast.show('Pedido salvo com sucesso. Aguarde a confirmação');
-          this.router.navigate(['/tbas/produtos']);
+          this.router.navigate(['/tabs/produtos']);
         })
           .catch( () => {
             this.toast.show('Erro ao salvar o Pedido');

@@ -1,4 +1,3 @@
-import { ListaEnderecoPage } from './enderecos/lista-endereco/lista-endereco.page';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -18,8 +17,8 @@ import { firebaseconfig } from '../firebase-config';
 import { DatePipe } from '@angular/common';
 
 @NgModule({
-  declarations: [AppComponent, ListaEnderecoPage],
-  entryComponents: [ListaEnderecoPage],
+  declarations: [AppComponent],
+  entryComponents: [],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

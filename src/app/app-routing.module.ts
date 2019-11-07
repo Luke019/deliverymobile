@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'login', loadChildren: './usuarios/login/login.module#LoginPageModule' },
   { path: 'esqueci-senha', loadChildren: './usuarios/esqueci-senha/esqueci-senha.module#EsqueciSenhaPageModule' },
   { path: 'forma-pagamento', loadChildren: './pedidos/forma-pagamento/forma-pagamento.module#FormaPagamentoPageModule' },
+  { path: 'lista-pedido', loadChildren: './pedidos/lista-pedido/lista-pedido.module#ListaPedidoPageModule' },
 
 ];
 @NgModule({

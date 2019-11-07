@@ -17,12 +17,11 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'tab2',
+        path: 'pedidos',
         children: [
           {
             path: '',
-            loadChildren: () =>
-              import('../tab2/tab2.module').then(m => m.Tab2PageModule)
+            loadChildren: '../pedidos/lista-pedido/lista-pedido.module#ListaPedidoPageModule'
           }
         ]
       },
@@ -73,6 +72,10 @@ const routes: Routes = [
       {
         path: 'forma-pagamento',
         loadChildren: '../pedidos/forma-pagamento/forma-pagamento.module#FormaPagamentoPageModule'
+      },
+      {
+        path: 'produtos/:key',
+        loadChildren: '../pedidos/lista-produto-pedido/lista-produto-pedido.module#ListaProdutoPedidoPageModule'
       }
     ]
   },

@@ -14,8 +14,8 @@ import { ModalController } from '@ionic/angular';
 export class ListaEnderecoPage implements OnInit {
   enderecos: Observable<any[]>;
   @Input()
-  // tslint:disable-next-line: no-inferrable-types
   selecionarEndereco: boolean = false;
+
   constructor(private enderecoService: EnderecoService,
               private alert: AlertService,
               private toast: ToastService,
@@ -29,13 +29,14 @@ export class ListaEnderecoPage implements OnInit {
   getEnderecoText(endereco: any) {
     let enderecoText: '';
     enderecoText = endereco.logradouro;
-    enderecoText += endereco.numero;
+    // enderecoText += endereco.numero;
     enderecoText += ', ' + endereco.numero;
     if (endereco.complemento) {
       enderecoText += ', ' + endereco.complemento;
     }
     enderecoText += ' - ' + endereco.bairro;
     enderecoText += ' - ' + endereco.cep;
+    console.log(enderecoText);
     return enderecoText;
   }
 
